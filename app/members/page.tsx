@@ -24,45 +24,49 @@ export default function Members() {
     };
 
     members.forEach((member: any) => {
-        const role = member.role;
+        const group = member.group;
+        const role = member.role; // Still used for Alumni sub-sorting and display
 
-        if (role === '准教授') {
+        if (group === 'Principal Investigator') {
             // @ts-ignore
             groups["Principal Investigator"].push(member);
-        } else if (role === '特任専門職員') {
+        } else if (group === 'Staff') {
             // @ts-ignore
             groups["Staff"].push(member);
-        } else if (role === '特任研究員' || role === '学振CPD') {
+        } else if (group === 'Postdoc') {
             // @ts-ignore
             groups["Postdoc"].push(member);
-        } else if (['D3', 'D2', 'D1'].includes(role)) {
+        } else if (group === 'PhD Student') {
             // @ts-ignore
             groups["PhD Student"].push(member);
-        } else if (['M2', 'M1'].includes(role)) {
+        } else if (group === 'Master Student') {
             // @ts-ignore
             groups["Master Student"].push(member);
-        } else if (['B4', 'B3'].includes(role)) {
+        } else if (group === 'Undergraduate') {
             // @ts-ignore
             groups["Undergraduate"].push(member);
-        } else if (role === 'Visitor') {
+        } else if (group === 'Visitor') {
             // @ts-ignore
             groups["Visitor"].push(member);
-        } else if (role === '研究員') {
-            // @ts-ignore
-            groups["Alumni"]["Researcher"].push(member);
-        } else if (role === '博士課程修了') {
-            // @ts-ignore
-            groups["Alumni"]["PhD"].push(member);
-        } else if (role === '修士課程修了') {
-            // @ts-ignore
-            groups["Alumni"]["Master"].push(member);
-        } else if (role === '学部卒業') {
-            // @ts-ignore
-            groups["Alumni"]["Undergrad"].push(member);
-        } else {
-            // Fallback
-            // @ts-ignore
-            // groups["Alumni"]["Researcher"].push(member);
+        } else if (group === 'Alumni') {
+            // For Alumni, we still need to sub-categorize based on Role
+            if (role === '研究員') {
+                // @ts-ignore
+                groups["Alumni"]["Researcher"].push(member);
+            } else if (role === '博士課程修了') {
+                // @ts-ignore
+                groups["Alumni"]["PhD"].push(member);
+            } else if (role === '修士課程修了') {
+                // @ts-ignore
+                groups["Alumni"]["Master"].push(member);
+            } else if (role === '学部卒業') {
+                // @ts-ignore
+                groups["Alumni"]["Undergrad"].push(member);
+            } else {
+                // Fallback for Alumni
+                // @ts-ignore
+                groups["Alumni"]["Researcher"].push(member);
+            }
         }
     });
 
