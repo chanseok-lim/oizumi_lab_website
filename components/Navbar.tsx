@@ -9,6 +9,7 @@ const navItems = [
     { name: "Home", href: "/" },
     { name: "Publications", href: "/publications" },
     { name: "Members", href: "/members" },
+    { name: "Join", href: "/recruitment" },
     { name: "News", href: "/news" },
 ];
 
@@ -24,7 +25,7 @@ export default function Navbar() {
         }}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 'var(--header-height)' }}>
                 {/* Logo */}
-                <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-primary)' }}>
+                <Link href="/" className="nav-link" style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-primary)' }}>
                     Oizumi Lab
                 </Link>
 
@@ -61,16 +62,22 @@ export default function Navbar() {
                     borderBottom: '1px solid var(--border-color)',
                     padding: '1rem'
                 }}>
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            onClick={() => setIsOpen(false)}
-                            style={{ display: 'block', padding: '0.5rem 0', fontWeight: 500 }}
-                        >
-                            {item.name}
-                        </Link>
-                    ))}
+                    {navItems.map((item) => <Link
+                        key={item.name}
+                        href={item.href}
+                        className="nav-link"
+                        style={{
+                            fontSize: '0.95rem',
+                            fontWeight: '500',
+                            color: 'var(--color-text-muted)',
+                            padding: '0.5rem 0.75rem',
+                            borderRadius: 'var(--radius-sm)',
+                            transition: 'all var(--transition-fast)'
+                        }}
+                    >
+                        {item.name}
+                    </Link>
+                    )}
                 </div>
             )}
 

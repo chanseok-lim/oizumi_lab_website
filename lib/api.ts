@@ -88,3 +88,27 @@ export function getNews() {
     // Sort by date (descending)
     return allNews.sort((a: any, b: any) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
 }
+
+export function getNotices() {
+    const noticesDir = path.join(contentDirectory, "notices");
+
+    if (!fs.existsSync(noticesDir)) {
+        return [];
+    }
+
+    const fileNames = fs.readdirSync(noticesDir);
+    const allNotices = fileNames.map((fileName) => {
+        const fullPath = path.join(noticesDir, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const { data, content } = matter(fileContents);
+
+        return {
+            slug: fileName.replace(/\.md$/, ""),
+            ...data,
+            content,
+        };
+    });
+
+    // Sort by date (descending)
+    return allNotices.sort((a: any, b: any) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
+}

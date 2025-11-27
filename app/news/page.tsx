@@ -52,7 +52,6 @@ export default function News() {
                                             <span style={{
                                                 fontSize: '0.95rem',
                                                 color: 'var(--color-text-muted)',
-                                                fontFamily: 'monospace',
                                                 flexShrink: 0
                                             }}>
                                                 {format(new Date(item.date), 'MM/dd')}

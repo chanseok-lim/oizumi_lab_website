@@ -45,3 +45,49 @@ collections:
     fields:
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "notices"
+    label: "Latest Updates"
+    folder: "content/notices"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Link", name: "link", widget: "string", required: false, hint: "Optional link to a page (e.g. /recruitment)"}
+      - {label: "Content", name: "body", widget: "markdown", required: false}
+
+  - name: "research"
+    label: "Featured Research"
+    folder: "content/research"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Link", name: "link", widget: "string"}
+      - {label: "Press Release Link", name: "press_release_link", widget: "string", required: false}
+      - {label: "Image", name: "image", widget: "image", required: false}
+
+  - name: "recruitment"
+    label: "Recruitment (Join Page)"
+    files:
+      - name: "postdocs"
+        label: "Postdocs"
+        file: "content/recruitment/postdocs.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Content", name: "body", widget: "markdown"}
+      - name: "graduate"
+        label: "Graduate Students"
+        file: "content/recruitment/graduate.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Content", name: "body", widget: "markdown"}
+      - name: "undergraduate"
+        label: "Undergraduate Students"
+        file: "content/recruitment/undergraduate.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Content", name: "body", widget: "markdown"}

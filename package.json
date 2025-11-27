@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"npx decap-server\"",
     "dev:cms": "concurrently \"next dev\" \"npx decap-server\"",
     "build": "next build",
     "start": "next start",
