@@ -1,11 +1,15 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: oizumi-lab/oizumi_lab_website
   branch: main
+  base_url: https://oizumi-lab-website.vercel.app # We will update this if the domain differs, but this is the standard Vercel pattern
+  auth_endpoint: api/auth # We will create this route
 
-local_backend: true
-
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dvee1a4ol
+    api_key: 349484198756255
 
 collections:
   - name: "publications"
