@@ -5,6 +5,8 @@ backend:
   base_url: https://oizumi-lab-website.vercel.app # We will update this if the domain differs, but this is the standard Vercel pattern
   auth_endpoint: api/auth # We will create this route
 
+local_backend: true
+
 media_library:
   name: cloudinary
   config:
@@ -25,6 +27,7 @@ collections:
       - {label: "DOI Link", name: "doi", widget: "string", required: false}
       - {label: "PDF", name: "pdf", widget: "file", required: false}
       - {label: "Abstract", name: "body", widget: "markdown", required: false}
+      - {label: "Note", name: "note", widget: "string", required: false, hint: "e.g. *: equal contribution"}
 
   - name: "members"
     label: "Members"
@@ -33,11 +36,23 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Name", name: "title", widget: "string"}
-      - {label: "Group", name: "group", widget: "select", options: ["Staff", "PhD Student", "Master Student", "Undergraduate", "Visitor", "Alumni"]}
+      - {label: "Group", name: "group", widget: "select", options: ["Staff", "PhD Student", "Master Student", "Undergraduate", "Visitor"]}
       - {label: "Role", name: "role", widget: "string"}
       - {label: "Profile Image", name: "image", widget: "image", required: false}
       - {label: "Bio", name: "body", widget: "markdown", required: false}
       - {label: "Email", name: "email", widget: "string", required: false}
+      - {label: "Website", name: "website", widget: "string", required: false}
+
+  - name: "alumni"
+    label: "Alumni"
+    folder: "content/alumni"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Name", name: "title", widget: "string"}
+      - {label: "Roles", name: "roles", widget: "select", multiple: true, options: ["研究員", "博士課程修了", "修士課程修了", "学部卒業"]}
+      - {label: "Profile Image", name: "image", widget: "image", required: false}
+      - {label: "Bio", name: "body", widget: "markdown", required: false}
       - {label: "Website", name: "website", widget: "string", required: false}
 
   - name: "news"

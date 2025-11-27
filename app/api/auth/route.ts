@@ -10,7 +10,7 @@ export async function GET() {
         return NextResponse.json({ error: 'Missing OAUTH_CLIENT_ID' }, { status: 500 });
     }
 
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${OAUTH_CLIENT_ID}&scope=repo,user`;
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${OAUTH_CLIENT_ID}&scope=public_repo,user`;
 
     return NextResponse.redirect(authUrl);
 }

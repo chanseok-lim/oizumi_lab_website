@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getMembers } from "@/lib/api";
+import { getMembers, getAlumni } from "@/lib/api";
 import { Mail, Globe } from "lucide-react";
 
 export default function Members() {
     const members = getMembers();
+    const alumni = getAlumni();
 
     // Group members by role
     const groups = {
@@ -23,7 +24,6 @@ export default function Members() {
 
     members.forEach((member: any) => {
         const group = member.group;
-        const role = member.role; // Still used for Alumni sub-sorting and display
 
         if (['Principal Investigator', 'Postdoc', 'Staff'].includes(group)) {
             // @ts-ignore
@@ -40,25 +40,33 @@ export default function Members() {
         } else if (group === 'Visitor') {
             // @ts-ignore
             groups["Visitor"].push(member);
-        } else if (group === 'Alumni') {
-            // For Alumni, we still need to sub-categorize based on Role
-            if (role === '研究員') {
-                // @ts-ignore
-                groups["Alumni"]["Researcher"].push(member);
-            } else if (role === '博士課程修了') {
-                // @ts-ignore
-                groups["Alumni"]["PhD"].push(member);
-            } else if (role === '修士課程修了') {
-                // @ts-ignore
-                groups["Alumni"]["Master"].push(member);
-            } else if (role === '学部卒業') {
-                // @ts-ignore
-                groups["Alumni"]["Undergrad"].push(member);
-            } else {
-                // Fallback for Alumni
-                // @ts-ignore
-                groups["Alumni"]["Researcher"].push(member);
-            }
+        }
+    });
+
+    // Process Alumni
+    alumni.forEach((alum: any) => {
+        const roles = alum.roles || [];
+
+        if (roles.includes('研究員')) {
+            // @ts-ignore
+            groups["Alumni"]["Researcher"].push(alum);
+        }
+        if (roles.includes('博士課程修了')) {
+            // @ts-ignore
+            groups["Alumni"]["PhD"].push(alum);
+        }
+        if (roles.includes('修士課程修了')) {
+            // @ts-ignore
+            groups["Alumni"]["Master"].push(alum);
+        }
+        if (roles.includes('学部卒業')) {
+            // @ts-ignore
+            groups["Alumni"]["Undergrad"].push(alum);
+        }
+        // Fallback if no roles match but is in alumni folder?
+        if (roles.length === 0) {
+            // @ts-ignore
+            groups["Alumni"]["Researcher"].push(alum);
         }
     });
 
@@ -109,10 +117,12 @@ export default function Members() {
                             ];
 
                             // Define sorting order for each category
+                            // Define sorting order for each category
                             const sortOrders = {
-                                "PhD": ["神谷俊輔", "田口智也"],
-                                "Master": ["阿部剛大", "清水優梨亜", "片岡麻輝", "清岡大毅", "関澤太樹", "神谷俊輔", "田口智也"],
-                                "Undergrad": ["清岡大毅", "阿部剛大", "高橋創", "松田青創楽"]
+                                "Researcher": ["佐々木大", "鹿内友美", "北園淳", "川北源二", "藤井敬子"],
+                                "PhD": ["田口智也", "神谷俊輔"],
+                                "Master": ["阿部剛大", "清水優梨亜", "片岡麻輝", "清岡大毅", "関澤太樹", "田口智也", "神谷俊輔"],
+                                "Undergrad": ["高橋創", "松田青創楽", "阿部剛大", "清岡大毅"]
                             };
 
                             // Check if there are any alumni

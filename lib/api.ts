@@ -65,6 +65,29 @@ export function getMembers() {
     });
 }
 
+export function getAlumni() {
+    const alumniDir = path.join(contentDirectory, "alumni");
+
+    if (!fs.existsSync(alumniDir)) {
+        return [];
+    }
+
+    const fileNames = fs.readdirSync(alumniDir);
+    const allAlumni = fileNames.map((fileName) => {
+        const fullPath = path.join(alumniDir, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const { data, content } = matter(fileContents);
+
+        return {
+            slug: fileName.replace(/\.md$/, ""),
+            ...data,
+            content,
+        };
+    });
+
+    return allAlumni;
+}
+
 export function getNews() {
     const newsDir = path.join(contentDirectory, "news");
 
