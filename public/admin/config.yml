@@ -19,6 +19,7 @@ collections:
     folder: "content/publications"
     create: true
     slug: "{{year}}-{{slug}}"
+    sortable_fields: ['year', 'title']
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Authors", name: "authors", widget: "string"}
