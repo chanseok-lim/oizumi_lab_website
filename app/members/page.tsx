@@ -8,9 +8,7 @@ export default function Members() {
 
     // Group members by role
     const groups = {
-        "Principal Investigator": [],
-        "Staff": [],
-        "Postdoc": [],
+        "Staff": [], // Merged PI, Postdoc, Staff
         "PhD Student": [],
         "Master Student": [],
         "Undergraduate": [],
@@ -27,15 +25,9 @@ export default function Members() {
         const group = member.group;
         const role = member.role; // Still used for Alumni sub-sorting and display
 
-        if (group === 'Principal Investigator') {
-            // @ts-ignore
-            groups["Principal Investigator"].push(member);
-        } else if (group === 'Staff') {
+        if (['Principal Investigator', 'Postdoc', 'Staff'].includes(group)) {
             // @ts-ignore
             groups["Staff"].push(member);
-        } else if (group === 'Postdoc') {
-            // @ts-ignore
-            groups["Postdoc"].push(member);
         } else if (group === 'PhD Student') {
             // @ts-ignore
             groups["PhD Student"].push(member);
@@ -70,13 +62,29 @@ export default function Members() {
         }
     });
 
+    // Custom sort for the merged "Staff" group
+    // Order: Oizumi (PI) -> Postdocs -> Yokota (Staff)
+    // @ts-ignore
+    groups["Staff"].sort((a: any, b: any) => {
+        // 1. Oizumi first
+        if (a.title.includes("大泉")) return -1;
+        if (b.title.includes("大泉")) return 1;
+
+        // 3. Yokota last
+        if (a.title.includes("横田")) return 1;
+        if (b.title.includes("横田")) return -1;
+
+        // 2. Postdocs (and anyone else) in middle
+        // If both are Postdocs, maybe sort alphabetical or keep order?
+        // Let's just sort by group priority if needed, but here they are likely all Postdocs
+        return 0;
+    });
+
     const sections = [
-        { title: "Principal Investigator", key: "Principal Investigator" },
-        { title: "Postdocs", key: "Postdoc" },
+        { title: "Staff", key: "Staff" },
         { title: "PhD Students", key: "PhD Student" },
         { title: "Master Students", key: "Master Student" },
         { title: "Undergraduate Students", key: "Undergraduate" },
-        { title: "Staff", key: "Staff" },
         { title: "Visitors", key: "Visitor" },
         { title: "Alumni", key: "Alumni" },
     ];
