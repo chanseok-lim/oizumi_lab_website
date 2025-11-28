@@ -7,6 +7,9 @@ backend:
 
 local_backend: true
 
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
 media_library:
   name: cloudinary
   config:
@@ -74,7 +77,7 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Link", name: "link", widget: "string", required: false, hint: "Optional link to a page (e.g. /recruitment)"}
+      - {label: "Link", name: "link", widget: "string", required: false, hint: "Optional link to a page (e.g. /join)"}
       - {label: "Content", name: "body", widget: "markdown", required: false}
 
   - name: "research"
@@ -90,8 +93,8 @@ collections:
       - {label: "Press Release Link", name: "press_release_link", widget: "string", required: false}
       - {label: "Image", name: "image", widget: "image", required: false}
 
-  - name: "recruitment"
-    label: "Recruitment (Join Page)"
+  - name: "join_pages"
+    label: "Join"
     files:
       - name: "postdocs"
         label: "Postdocs"

@@ -11,6 +11,36 @@
 <body>
   <!-- Include the script that builds the page and powers Netlify CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: () => { }
+    });
+
+    // Add "Back to Website" button
+    const addBackButton = () => {
+      if (!document.getElementById('back-to-site')) {
+        const btn = document.createElement('a');
+        btn.id = 'back-to-site';
+        btn.href = '/';
+        btn.innerText = 'Back to Website';
+        // Fixed position to ensure visibility regardless of CMS structure
+        btn.style.cssText = 'position: fixed; top: 12px; right: 300px; z-index: 9999; color: #fff; text-decoration: none; font-weight: bold; padding: 8px 16px; background: #3b82f6; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);';
+        document.body.appendChild(btn);
+      }
+    };
+
+    const handleMutations = () => {
+      addBackButton();
+    };
+
+    // Observer to wait for CMS to load
+    const observer = new MutationObserver(handleMutations);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Also run once immediately
+    window.addEventListener('load', handleMutations);
+  </script>
 </body>
 
 </html>

@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Oizumi Laboratory at The University of Tokyo. Researching consciousness and the brain.",
 };
 
+import { LanguageProvider } from "../context/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -17,7 +19,9 @@ export default function RootLayout({
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </head>
       <body>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

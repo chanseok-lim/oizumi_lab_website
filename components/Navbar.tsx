@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import styles from "./Navbar.module.css"; // We will create this or use global classes
 
 const navItems = [
     { name: "Home", href: "/" },
     { name: "Publications", href: "/publications" },
     { name: "Members", href: "/members" },
-    { name: "Join", href: "/recruitment" },
+    { name: "Join", href: "/join" },
     { name: "News", href: "/news" },
 ];
 
@@ -30,7 +29,7 @@ export default function Navbar() {
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="desktop-menu" style={{ display: 'flex', gap: '2rem' }}>
+                <div className="desktop-menu" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
                     {navItems.map((item) => (
                         <Link
                             key={item.name}
