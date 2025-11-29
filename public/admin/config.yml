@@ -151,3 +151,21 @@ collections:
                 {label: "Answer", name: "answer", widget: "markdown"}
               ]}
             ]}
+      - name: "research"
+        label: "Research Page"
+        file: "content/pages/research.md"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Overview", name: "overview", widget: "markdown"}
+
+  - name: "research_topics"
+    label: "Research Topics"
+    folder: "content/research_topics"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Order Weight", name: "weight", widget: "number", default: 10, value_type: "int"}
+      - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Images", name: "images", widget: "list", required: false, field: {label: "Image", name: "image", widget: "image"}}
+      - {label: "References", name: "references", widget: "relation", collection: "publications", search_fields: ["title"], value_field: "title", display_fields: ["title", "year"], multiple: true, required: false}
