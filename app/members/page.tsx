@@ -194,16 +194,38 @@ export default function Members() {
 
                         const isSimpleList = section.key === "Visitor";
 
-                        // Sort students by grade
-                        if (["PhD Student", "Master Student"].includes(section.key)) {
+                        // Sort visitors by date (newest first)
+                        if (section.key === "Visitor") {
+                            sectionMembers.sort((a: any, b: any) => {
+                                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                                return dateB - dateA;
+                            });
+                        }
+
+                        // Sort students by grade then by last name
+                        if (["PhD Student", "Master Student", "Undergraduate"].includes(section.key)) {
                             const gradeOrder: { [key: string]: number } = {
                                 "D3": 1, "D2": 2, "D1": 3,
-                                "M2": 1, "M1": 2
+                                "M2": 4, "M1": 5,
+                                "B4": 6, "B3": 7, "B2": 8, "B1": 9
                             };
                             sectionMembers.sort((a: any, b: any) => {
                                 const gradeA = gradeOrder[a.role] || 99;
                                 const gradeB = gradeOrder[b.role] || 99;
-                                return gradeA - gradeB;
+
+                                if (gradeA !== gradeB) {
+                                    return gradeA - gradeB;
+                                }
+
+                                // If grades are same, sort by last name
+                                const nameA = a.name_en || a.title;
+                                const nameB = b.name_en || b.title;
+
+                                const lastNameA = nameA.trim().split(' ').pop().toLowerCase();
+                                const lastNameB = nameB.trim().split(' ').pop().toLowerCase();
+
+                                return lastNameA.localeCompare(lastNameB);
                             });
                         }
 
@@ -273,6 +295,11 @@ export default function Members() {
                                                         member.title
                                                     )}
                                                 </h3>
+                                                {member.name_en && (
+                                                    <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)', marginBottom: '0.25rem', marginTop: '-0.25rem' }}>
+                                                        {member.name_en}
+                                                    </p>
+                                                )}
                                                 <p style={{ color: 'var(--color-accent)', fontWeight: 500, marginBottom: '0.5rem' }}>{member.role}</p>
 
                                                 {member.bio && (

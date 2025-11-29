@@ -132,7 +132,7 @@ export default function Research() {
                                                         <div key={refIndex} style={{ fontSize: '0.85rem', lineHeight: '1.4', display: 'flex', gap: '0.5rem' }}>
                                                             <span style={{ color: 'var(--color-text-muted)' }}>•</span>
                                                             <div>
-                                                                <span>{authors} ({pub.year}) "{pub.title}". <span style={{ fontStyle: 'italic' }}>{pub.journal}</span></span>
+                                                                <span>{authors} ({pub.year}) "{pub.title}"{['.', '?', '!'].includes(pub.title.trim().slice(-1)) ? '' : '.'} <span style={{ fontStyle: 'italic' }}>{pub.journal}</span></span>
                                                                 <div style={{ display: 'inline-flex', gap: '0.5rem', marginLeft: '0.5rem', verticalAlign: 'middle' }}>
                                                                     {pub.doi && (
                                                                         <a href={pub.doi} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.1rem', color: 'var(--color-accent)', textDecoration: 'none' }} className="hover:underline">

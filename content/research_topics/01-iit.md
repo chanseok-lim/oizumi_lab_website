@@ -11,9 +11,8 @@ images:
 references:
   - "From the Phenomenology to the Mechanisms of Consciousness: Integrated
     Information Theory 3.0"
-  - Unified framework for information integration based on information geometry
+  - Unified Framework for Information Integration Based on Information Geometry
   - Measuring Integrated Information from the Decoding Perspective
-  - Geometry of information integration
   - "Stimulus Set Meaningfulness and Neurophysiological Differentiation: A
     Functional Magnetic Resonance Imaging Study."
   - Contents of Consciousness Investigated as Integrated Information in Direct
