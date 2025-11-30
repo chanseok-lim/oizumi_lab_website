@@ -47,8 +47,8 @@ export default async function PIPage() {
                 {/* Hero Section */}
                 <section className="bg-white" style={{ padding: '1.5rem 1.5rem' }}>
                     <div className="max-w-4xl mx-auto">
-                        <div className="flex flex-row gap-8 items-start justify-between">
-                            <div className="flex-1 pt-2 text-left min-w-0" style={{ paddingLeft: '1.5rem' }}>
+                        <div className="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
+                            <div className="flex-1 pt-2 text-left min-w-0 md:pl-6">
                                 <h1 className="text-3xl font-bold mb-2 tracking-tight text-slate-900">{hero.title}</h1>
                                 <p className="text-lg text-sky-600 mb-3 font-medium">{hero.role}</p>
 
@@ -61,7 +61,7 @@ export default async function PIPage() {
                                     {hero.contact_info}
                                 </div>
                             </div>
-                            <div className="w-48 h-48 relative shrink-0 self-start">
+                            <div className="w-48 h-48 relative shrink-0 self-center md:self-start">
                                 <img
                                     src={hero.image}
                                     alt={hero.title}
