@@ -40,7 +40,7 @@ export default function PostdocContent({ jp, en }: PostdocContentProps) {
                             gap: '0.5rem'
                         }}
                     >
-                        {language === 'jp' ? 'English page here →' : 'Japanese page here →'}
+                        {language === 'jp' ? 'English' : 'Japanese'}
                     </button>
                 </div>
             </div>

@@ -18,7 +18,7 @@ export default function Notices({ notices }: { notices: Notice[] }) {
             <div className="container">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem', color: 'var(--color-primary)', fontWeight: 'bold', fontSize: '1.5rem' }}>
                     <Bell size={28} />
-                    <h2>Latest Updates</h2>
+                    <h2>Announcements</h2>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>

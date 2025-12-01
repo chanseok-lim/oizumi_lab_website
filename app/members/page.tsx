@@ -111,10 +111,10 @@ export default function Members() {
                         if (section.key === "Alumni") {
                             // Special handling for Alumni sub-sections
                             const alumniGroups = [
-                                { title: "研究員", key: "Researcher" },
-                                { title: "博士課程修了", key: "PhD" },
-                                { title: "修士課程修了", key: "Master" },
-                                { title: "学部卒業", key: "Undergrad" },
+                                { title: "Research Staff", key: "Researcher" },
+                                { title: "Ph.D. Graduates", key: "PhD" },
+                                { title: "Master's Graduates", key: "Master" },
+                                { title: "Bachelor's Graduates", key: "Undergrad" },
                             ];
 
                             // Define sorting order for each category
@@ -125,6 +125,25 @@ export default function Members() {
                                 "Master": ["阿部剛大", "清水優梨亜", "片岡麻輝", "清岡大毅", "関澤太樹", "田口智也", "神谷俊輔"],
                                 "Undergrad": ["高橋創", "松田青創楽", "阿部剛大", "清岡大毅"]
                             };
+
+                            const englishNames: { [key: string]: string } = {
+                                "佐々木大": "Masaru Sasaki",
+                                "鹿内友美": "Yumi Shikauchi",
+                                "北園淳": "Jun Kitazono",
+                                "川北源二": "Genji Kawakita",
+                                "藤井敬子": "Keiko Fujii",
+                                "田口智也": "Tomoya Taguchi",
+                                "神谷俊輔": "Shunsuke Kamiya",
+                                "阿部剛大": "Kota Abe",
+                                "清水優梨亜": "Yuria Shimizu",
+                                "片岡麻輝": "Asaki Kataoka",
+                                "清岡大毅": "Daiki Kiyooka",
+                                "関澤太樹": "Daiki Sekizawa",
+                                "高橋創": "Soh Takahashi",
+                                "松田青創楽": "Aozora Matsuda"
+                            };
+
+                            const noLinkMembers = ["鹿内友美", "北園淳", "川北源二"];
 
                             // Check if there are any alumni
                             // @ts-ignore
@@ -167,13 +186,28 @@ export default function Members() {
                                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem 2rem' }}>
                                                     {subMembers.map((member: any) => (
                                                         <div key={member.slug} style={{ fontSize: '1.1rem' }}>
-                                                            {member.website ? (
-                                                                <a href={member.website} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-text)', textDecoration: 'none', borderBottom: '1px solid transparent', transition: 'border-color 0.2s' }} className="hover:border-primary">
-                                                                    {member.title}
-                                                                </a>
-                                                            ) : (
-                                                                <span>{member.title}</span>
-                                                            )}
+                                                            {(() => {
+                                                                const hasEnglishName = englishNames[member.title];
+                                                                const displayName = (
+                                                                    <>
+                                                                        {member.title}
+                                                                        {hasEnglishName && (
+                                                                            <span style={{ fontSize: '0.85em', color: 'var(--color-text-muted)', marginLeft: '0.5rem' }}>
+                                                                                ({hasEnglishName})
+                                                                            </span>
+                                                                        )}
+                                                                    </>
+                                                                );
+                                                                const shouldLink = member.website && !noLinkMembers.some(name => member.title.includes(name));
+
+                                                                return shouldLink ? (
+                                                                    <a href={member.website} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-text)', textDecoration: 'none', borderBottom: '1px solid transparent', transition: 'border-color 0.2s' }} className="hover:border-primary">
+                                                                        {displayName}
+                                                                    </a>
+                                                                ) : (
+                                                                    <span>{displayName}</span>
+                                                                );
+                                                            })()}
                                                             {member.bio && (
                                                                 <span style={{ marginLeft: '0.5rem', color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>
                                                                     {member.bio}
@@ -359,7 +393,7 @@ export default function Members() {
                     })}
 
                     <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid var(--border-color)', textAlign: 'center', color: 'var(--color-text-muted)' }}>
-                        <p>※ Emailはat mark g.ecc.u-tokyo.ac.jpをつけてください</p>
+                        <p>Please add the atmark g.ecc.u-tokyo.ac.jp to our email addresses.</p>
                     </div>
                 </div>
             </main>

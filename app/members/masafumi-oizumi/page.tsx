@@ -86,7 +86,7 @@ export default async function PIPage() {
                                 if (!pub) return null;
 
                                 // Format authors
-                                let authors = pub.authors || '';
+                                let authors = (pub.authors || '').replace(/,?\s+and\s+([^,]+)$/, ', $1');
                                 if (authors) {
                                     const authorList = authors.split(',').map((a: string) => a.trim());
                                     if (authorList.length > 5) {

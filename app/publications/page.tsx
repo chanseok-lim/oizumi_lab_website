@@ -26,7 +26,7 @@ export default function Publications() {
                                     <h3 style={{ fontSize: '1.1rem', marginBottom: '0.25rem', lineHeight: '1.4' }}>
                                         {pub.title.endsWith('.') ? pub.title.slice(0, -1) : pub.title}
                                     </h3>
-                                    <p className="text-muted" style={{ marginBottom: '0.15rem', fontSize: '0.95rem' }}>{pub.authors}</p>
+                                    <p className="text-muted" style={{ marginBottom: '0.15rem', fontSize: '0.95rem' }}>{pub.authors.replace(/,?\s+and\s+([^,]+)$/, ', $1')}</p>
                                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem' }}>
                                         <span style={{ fontStyle: 'italic' }}>
                                             {/* Remove trailing dot from journal if present, then add comma */}

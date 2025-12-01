@@ -82,7 +82,7 @@ export default function FeaturedResearch({ research }: { research: ResearchItem[
                                             fontSize: '0.9rem',
                                             padding: '0.5rem 1rem'
                                         }}>
-                                            Know More
+                                            Learn More
                                         </Link>
                                     )}
                                 </div>
