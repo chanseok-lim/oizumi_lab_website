@@ -201,6 +201,18 @@ collections:
       - {label: "Description", name: "description", widget: "markdown"}
       - {label: "Images", name: "images", widget: "list", required: false, field: {label: "Image", name: "image", widget: "image"}}
       - {label: "References", name: "references", widget: "relation", collection: "publications", search_fields: ["title"], value_field: "title", display_fields: ["title", "year"], multiple: true, required: false}
+
+  - name: "student_research"
+    label: "Student Research"
+    folder: "content/student_research"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Order Weight", name: "weight", widget: "number", default: 10, value_type: "int"}
+      - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "References", name: "references", widget: "relation", collection: "publications_jp", search_fields: ["title"], value_field: "title", display_fields: ["title", "year"], multiple: true, required: false}
   - name: "pi_sections"
     label: "PI Page Sections"
     files:

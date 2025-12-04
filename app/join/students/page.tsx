@@ -30,7 +30,22 @@ export default function Students() {
             <main style={{ flex: 1 }}>
                 <div className="container section" style={{ paddingBottom: '1rem', paddingTop: '2rem' }}>
                     <h1 style={{ marginBottom: '1rem', fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.02em' }}>{graduate.title}</h1>
-                    <div style={{ marginBottom: '1rem' }}>
+                    <div style={{ marginBottom: '1rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <a href="/join/students/research" style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            color: 'white',
+                            fontWeight: 600,
+                            textDecoration: 'none',
+                            padding: '0.5rem 1rem',
+                            background: 'var(--color-primary)',
+                            borderRadius: 'var(--radius-sm)',
+                            border: '1px solid var(--color-primary)',
+                            transition: 'all 0.2s'
+                        }} className="hover:shadow-md hover:opacity-90">
+                            <span style={{ fontSize: '1.2rem' }}>🔬</span> 研究内容紹介
+                        </a>
                         <a href="/join/faq" style={{
                             display: 'inline-flex',
                             alignItems: 'center',
